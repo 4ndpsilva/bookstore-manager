@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.aps.bookstoremanager</groupId>
-	<artifactId>book-store-manager</artifactId>
+	<artifactId>bookstore-manager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>book-store-manager</name>
 	<description>Bookstore manager</description>
@@ -60,6 +60,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
