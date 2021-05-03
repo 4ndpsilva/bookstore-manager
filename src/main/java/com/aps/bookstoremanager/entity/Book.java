@@ -31,6 +31,9 @@ public class Book {
     private String name;
 
     @Column(nullable = false)
+    private Integer chapters;
+
+    @Column(nullable = false)
     private Integer pages;
 
     @Column(nullable = false)
