@@ -27,9 +27,9 @@ public class BookResource {
                 name(dto.getName())
                 .pages(dto.getPages())
                 .chapters(dto.getChapters())
-                .author(dto.getAuthorDTO())
+                //.author(dto.getAuthorDTO())
                 .build();
-        return service.save(dto);
+        return service.save(book);
     }
 
     @GetMapping
