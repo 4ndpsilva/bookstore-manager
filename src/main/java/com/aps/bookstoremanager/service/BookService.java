@@ -1,22 +1,27 @@
 package com.aps.bookstoremanager.service;
 
+import com.aps.bookstoremanager.dto.BookDTO;
 import com.aps.bookstoremanager.dto.MessageResponseDTO;
 import com.aps.bookstoremanager.entity.Book;
+import com.aps.bookstoremanager.mapper.BookMapper;
 import com.aps.bookstoremanager.repository.BookRepository;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class BookService {
-    private final BookRepository repository;
+    @Autowired
+    private BookRepository repository;
 
-    public MessageResponseDTO save(final Book book){
+    private BookMapper mapper = BookMapper.INSTANCE;
+
+    public MessageResponseDTO save(final BookDTO bookDTO){
+        final Book book = mapper.toEntity(bookDTO);
         final Book savedBook = repository.save(book);
-        return MessageResponseDTO
-                .builder()
+
+        return MessageResponseDTO.builder()
                 .message("Book created with ID "+savedBook.getId())
                 .build();
     }

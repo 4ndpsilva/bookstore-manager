@@ -15,21 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/books")
+@RequiredArgsConstructor
 public class BookResource {
     private final BookService service;
 
     @PostMapping
     public MessageResponseDTO save(@RequestBody @Valid final BookDTO dto){
-        final Book book = Book.builder().
-                name(dto.getName())
-                .pages(dto.getPages())
-                .chapters(dto.getChapters())
-                //.author(dto.getAuthorDTO())
-                .build();
-        return service.save(book);
+        return service.save(dto);
     }
 
     @GetMapping

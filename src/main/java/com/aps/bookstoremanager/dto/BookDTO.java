@@ -1,6 +1,6 @@
 package com.aps.bookstoremanager.dto;
 
-import com.aps.bookstoremanager.entity.Author;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class BookDTO {
     private Long id;
 
@@ -29,7 +30,7 @@ public class BookDTO {
 
     @NotBlank
     @Size(max = 100)
-    @Pattern(regexp = "(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]))",
+    @Pattern(regexp = "(?=(?:\\D*\\d){10}(?:(?:\\D*\\d){3})?$)",
             message = "ISBN format must be a valid format")
     private String isbn;
 
