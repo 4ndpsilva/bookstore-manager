@@ -18,6 +18,7 @@
 		<java.version>11</java.version>
 		<lombok.version>1.18.20</lombok.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
+		<faker.version>1.0.2</faker.version>
 	</properties>
 
 	<dependencies>
@@ -65,6 +66,12 @@
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>${faker.version}</version>
 		</dependency>
 
 		<dependency>

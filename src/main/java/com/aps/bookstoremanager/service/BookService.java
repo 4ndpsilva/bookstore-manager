@@ -15,7 +15,7 @@ public class BookService {
     @Autowired
     private BookRepository repository;
 
-    private BookMapper mapper = BookMapper.INSTANCE;
+    private final BookMapper mapper = BookMapper.INSTANCE;
 
     public MessageResponseDTO save(final BookDTO bookDTO){
         final Book book = mapper.toEntity(bookDTO);
