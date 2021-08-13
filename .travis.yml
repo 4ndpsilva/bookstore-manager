@@ -1,8 +1,4 @@
 language: java
-jdk: openjdk11
-
-before_script:
-  - chmod +x mvnw.sh
-
-script:
-  - ./mvnw clean install
+jdk:
+  - openjdk11
+sudo: false
