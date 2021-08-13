@@ -1,4 +1,8 @@
 spring:
+  datasource:
+    url: jdbc:h2:mem:booksdb
+    username: sa
+    password:
   h2:
     console:
       enabled: true

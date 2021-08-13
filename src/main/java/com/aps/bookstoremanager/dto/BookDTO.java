@@ -33,9 +33,10 @@ public class BookDTO {
     private String isbn;
 
     @NotBlank
+    @Size(max = 200)
     private String publishName;
 
     @Valid
     @NotNull
-    private AuthorDTO authorDTO;
+    private AuthorDTO author;
 }

@@ -1,5 +1,6 @@
 package com.aps.bookstoremanager.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +16,7 @@ public class ErrorDTO {
     private String message;
     private String field;
     private Integer statusCode;
-    private LocalDateTime timestamp;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime occurredAt;
 }

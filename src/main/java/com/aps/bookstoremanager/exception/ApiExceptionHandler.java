@@ -24,11 +24,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     private List<ErrorDTO> getErrors(BindingResult bindingResult, HttpStatus httpStatus){
         final List<ErrorDTO> errors = new ArrayList<>();
         
-        bindingResult.getAllErrors().forEach(e -> {
+        bindingResult.getFieldErrors().forEach(e -> {
             final ErrorDTO error = new ErrorDTO();
             error.setMessage(e.getDefaultMessage());
+            error.setField(e.getField());
             error.setStatusCode(httpStatus.value());
-            error.setTimestamp(LocalDateTime.now());
+            error.setOccurredAt(LocalDateTime.now());
             errors.add(error);
         });
 
