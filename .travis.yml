@@ -1,6 +1,11 @@
-language: java
-sudo: true
 dist: trusty
+
+language: java
 jdk: openjdk11
+
+sudo: true
+
 before_install:
   - chmod +x mvnw
+
+script: ./mvnw clean install
