@@ -30,6 +30,11 @@ public class BookService {
         repository.deleteById(id);
     }
 
+    public Book findById(final Long id){
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Book not found!"));
+    }
+
     public List<Book> findAll(){
         return repository.findAll();
     }
