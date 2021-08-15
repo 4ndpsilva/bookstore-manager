@@ -6,6 +6,7 @@ jdk: openjdk11
 sudo: true
 before_install:
   - chmod +x mvnw
+
 script: mvn clean install
 
 deploy:
