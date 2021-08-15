@@ -6,5 +6,10 @@ jdk: openjdk11
 sudo: true
 before_install:
   - chmod +x mvnw
-
 script: mvn clean install
+
+deploy:
+  provider: heroku
+  api_key:
+    - secure: $SECURE_KEY
+  app: $APP
