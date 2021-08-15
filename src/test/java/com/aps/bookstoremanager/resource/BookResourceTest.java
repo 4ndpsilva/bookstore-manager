@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -66,6 +67,17 @@ public class BookResourceTest {
         mockMvc.perform(post(URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(BookUtil.asJsonString(bookDTO)))
-                .andExpect(status().isBadRequest());
+                            .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void shouldReturnNoContentWhenCalledDelete() throws Exception{
+        final BookDTO bookDTO = BookUtil.createBookDTO();
+        service.save(bookDTO);
+
+        mockMvc.perform(delete(URL+"/"+bookDTO.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(BookUtil.asJsonString(bookDTO)))
+                            .andExpect(status().isNoContent());
     }
 }
