@@ -11,6 +11,5 @@ script: mvn clean install
 
 deploy:
   provider: heroku
-  api_key:
-    - secure: $SECURE_KEY
   app: $APP
+  api_key: $SECURE_KEY
