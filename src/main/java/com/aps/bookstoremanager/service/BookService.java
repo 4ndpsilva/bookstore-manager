@@ -3,6 +3,7 @@ package com.aps.bookstoremanager.service;
 import com.aps.bookstoremanager.dto.BookDTO;
 import com.aps.bookstoremanager.dto.MessageResponseDTO;
 import com.aps.bookstoremanager.entity.Book;
+import com.aps.bookstoremanager.exception.NotFoundException;
 import com.aps.bookstoremanager.mapper.BookMapper;
 import com.aps.bookstoremanager.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class BookService {
 
     public Book findById(final Long id){
         return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Book not found!"));
+                .orElseThrow(() -> new NotFoundException());
     }
 
     public List<Book> findAll(){
