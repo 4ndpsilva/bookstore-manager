@@ -37,7 +37,7 @@ public class BookService {
 
     public Book findById(final Long id){
         return repository.findById(id)
-                .orElseThrow(() -> new NotFoundException());
+                .orElseThrow(NotFoundException::new);
     }
 
     public List<Book> findAll(){
