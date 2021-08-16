@@ -18,13 +18,22 @@ import java.util.List;
 @RestControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(final MethodArgumentNotValidException ex,
+                                                                  final HttpHeaders headers,
+                                                                  final HttpStatus status,
+                                                                  final WebRequest request) {
         return ResponseEntity.badRequest().body(getErrors(ex.getBindingResult(), status));
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Object> handleNotFound(final NotFoundException ex) {
+        final ErrorDTO errorDTO = new ErrorDTO(ex.getMessage(), null, HttpStatus.NOT_FOUND.value(), LocalDateTime.now());
+        return ResponseEntity.status(errorDTO.getStatusCode()).body(errorDTO);
     }
 
     private List<ErrorDTO> getErrors(BindingResult bindingResult, HttpStatus httpStatus){
         final List<ErrorDTO> errors = new ArrayList<>();
-        
+
         bindingResult.getFieldErrors().forEach(e -> {
             final ErrorDTO error = new ErrorDTO();
             error.setMessage(e.getDefaultMessage());
@@ -35,11 +44,5 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         });
 
         return errors;
-    }
-
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<Object> handleNotFoundException(NotFoundException ex, HttpStatus status){
-        final ErrorDTO errorDTO = new ErrorDTO("Livro não encontrado", null, status.value(), LocalDateTime.now());
-        return ResponseEntity.badRequest().body(errorDTO);
     }
 }
